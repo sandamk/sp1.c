@@ -3,7 +3,7 @@
 #include <string.h>
 
 struct keys{
-    char keyword[10];
+    char keyword[25];
     int count;
 };
 //initializing the table
