@@ -9,7 +9,7 @@ struct keys{
 //initializing the table
 void init_table(struct keys *s, int n)
 {
-    for (int i =0;i<n;i++)
+    for (int i =0;i<n-1;i++)
     {
         (s+i)->count = 0;
         strcpy((s+i)->keyword," ");
@@ -23,7 +23,7 @@ void update_table(struct keys *s, int n)
 //Displaying the table
 void display_table(struct keys *s, int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n-1; i++)
     printf ("Name: %s\t count:%d\n", (s + i)->keyword, (s + i)->count);
 }
 int main(int argc, char* argv[])
@@ -31,12 +31,12 @@ int main(int argc, char* argv[])
     struct keys *ptr;
     char *str=NULL;
     char *split;
-    const char s[2]=" ";
     ptr = (struct keys *) malloc (argc * sizeof (struct keys));
     init_table(ptr,argc); //intialize the keywords and counts
-    for (int i =0; i< argc; i++){
+
+    for (int i =1; i< argc; i++){
         printf("%s\n",argv[i]);
-        strcpy((ptr+i)->keyword,argv[i]);
+        strcpy((ptr+(i-1))->keyword,argv[i]);
     }
   char *line = NULL;
   size_t maxlen = 0;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
         split = strtok (line, " "); //Split the word whenever a space is encountered
     while (split != NULL)
     {
-      for (int i = 0; i <= argc; i++)
+      for (int i = 0; i < argc-1; i++)
 	{
     /*Comparing the split word with the keywords and if a match is found, increment the corresponding count */
 	  if (strcmp (split, (ptr + i)->keyword) == 0)
